@@ -11,10 +11,16 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        TestBean testBean = context.getBean("testBean", TestBean.class);
+        //Music music = context.getBean("musicBean", Music.class);
+        //MusicPlayer musicPlayer = new MusicPlayer(music);
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusicList();
 
-        System.out.println(testBean.getName());
+        //WHen dependencies injected using setters
+        //MusicPlayer musicPlayer1 = new MusicPlayer();
+        // musicPlayer1.setMusic(Music music);
 
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());
         context.close();
-    }
-}
+    }}

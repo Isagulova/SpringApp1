@@ -6,10 +6,31 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <bean id="testBean"
-          class="ru.alishev.springcourse.TestBean">
-        <constructor-arg value="Neil"/>
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <bean id="musicBeanClassical"
+          class="ru.alishev.springcourse.ClassicalMusic">
+    </bean>
+    <bean id="musicBeanRock"
+          class="ru.alishev.springcourse.RockMusic">
+    </bean>
+    <bean id="musicBeanJazz"
+          class="ru.alishev.springcourse.JazzMusic">
+    </bean>
+    <bean id="musicPlayer"
+          class="ru.alishev.springcourse.MusicPlayer">
+        <property name="musicList">
+            <list>
+                <ref bean="musicBeanClassical" />
+                <ref bean="musicBeanRock" />
+                <ref bean="musicBeanJazz" />
+            </list>
+        </property>
+<!--    <bean id="musicPlayer"-->
+<!--          class="ru.alishev.springcourse.MusicPlayer">-->
+<!--        <constructor-arg ref="musicBean"/>-->
+<!--    </bean>-->
+        <property name="name" value="${musicPlayer.getName}"/>
+        <property name="volume" value="${musicPlayer.getVolume}"/>
     </bean>
 
 </beans>
