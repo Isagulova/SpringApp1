@@ -1,34 +1,38 @@
 package ru.alishev.springcourse;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
-    private String name;
-    private int volume;
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-    public String getName() {
-        return name;
-    }
+//    @Autowired//Field injection
+//    private ClassicalMusic classicalMusic;
+//    @Autowired
+//    private RockMusic rockMusic;
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public int getVolume() {
-        return volume;
+    @Autowired //Constructor injection
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-    public void playMusicList() {
-        for(Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+
+//    @Autowired//Setter injection
+//    public void setClassicalMusic(ClassicalMusic classicalMusic) {
+//        this.classicalMusic = classicalMusic;
+//    }
+//    @Autowired//Setter
+//    public void setRockMusic(RockMusic rockMusic) {
+//        this.rockMusic = rockMusic;
+//    }
+
+    public void playMusic() {
+            System.out.println("Playing: " + classicalMusic.getSong());
+            System.out.println("Playing: " + rockMusic.getSong());
     }
 }
