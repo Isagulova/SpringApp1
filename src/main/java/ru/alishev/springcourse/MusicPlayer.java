@@ -2,36 +2,35 @@ package ru.alishev.springcourse;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MusicPlayer {
-    private ClassicalMusic classicalMusic;
-    private RockMusic rockMusic;
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
+    private int volume;
 
-//    @Autowired//Field injection
-//    private ClassicalMusic classicalMusic;
-//    @Autowired
-//    private RockMusic rockMusic;
-
-
-    @Autowired //Constructor injection
-    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
+    public String getName() {
+        return name;
     }
 
+    public int getVolume() {
+        return volume;
+    }
 
-//    @Autowired//Setter injection
-//    public void setClassicalMusic(ClassicalMusic classicalMusic) {
-//        this.classicalMusic = classicalMusic;
-//    }
-//    @Autowired//Setter
-//    public void setRockMusic(RockMusic rockMusic) {
-//        this.rockMusic = rockMusic;
-//    }
+    private Music music1;
+    private Music music2;
+    @Autowired
+    public MusicPlayer(@Qualifier("classicalMusic") Music music1,
+                       @Qualifier("rockMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
+    }
 
     public String playMusic() {
-        return "Playing: " + classicalMusic.getSong();
+        return "Playing: " + music1.getSong() + ", " + music2.getSong();
     }
 }
