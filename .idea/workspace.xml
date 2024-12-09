@@ -76,8 +76,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="spring-beans.schema" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -314,7 +314,7 @@
       <workItem from="1733162206099" duration="245000" />
       <workItem from="1733208223617" duration="4238000" />
       <workItem from="1733212664590" duration="5481000" />
-      <workItem from="1733756009346" duration="1165000" />
+      <workItem from="1733756009346" duration="2014000" />
     </task>
     <servers />
   </component>
